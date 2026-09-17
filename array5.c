@@ -1,25 +1,29 @@
 #include <stdio.h>
-int main() {
-    int arr[] = {12, -5, 0, 8, -1, 0, 7, -3, 15, 0};
-    int size = sizeof(arr) / sizeof(arr[0]);
-    int positive_count = 0;
-    int negative_count = 0;
-    int zero_count = 0;
+int linearSearch(int arr[], int size, int target) {
     for (int i = 0; i < size; i++) {
-        if (arr[i] > 0) {
-            positive_count++; 
-        } 
-        else if (arr[i] < 0) {
-            negative_count++; 
-        } 
-        else {
-            zero_count++; 
+        if (arr[i] == target) {
+            return i;
         }
     }
-    printf("Array Analysis:\n");
-    printf("Positive elements: %d\n", positive_count);
-    printf("Negative elements: %d\n", negative_count);
-    printf("Zero elements:     %d\n", zero_count);
-    
+    return -1; 
+}
+
+int main() {
+    int arr[] = {12, 45, 7, 93, 28, 54, 11};
+    int size = sizeof(arr) / sizeof(arr[0]); 
+    int target;
+
+    printf("Enter the element you want to search for: ");
+    if (scanf("%d", &target) != 1) {
+        printf("Invalid input.\n");
+        return 1;
+    }
+    int resultIndex = linearSearch(arr, size, target);
+    if (resultIndex != -1) {
+        printf("Element %d found at index %d.\n", target, resultIndex);
+    } else {
+        printf("Element %d is not present in the array.\n", target);
+    }
+
     return 0;
 }
